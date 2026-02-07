@@ -8,6 +8,9 @@ const e_mail = ref("");
 const pass_word = ref("");
 
 async function sendForm() {
+  console.log(user_name.value);
+  console.log(pass_word.value);
+  console.log(e_mail.value);
   try {
     const res = await fetch(props.path, {
       method: "POST",
@@ -35,17 +38,17 @@ async function sendForm() {
     <h2>{{ title }}</h2>
     <div>
       <label for="username">enter your username</label
-      ><input required="true" :v-model="username" name="username" type="text" />
+      ><input required="true" v-model="user_name" name="username" type="text" />
     </div>
     <div>
       <label for="email">enter your email</label
-      ><input required="true" :v-model="email" name="email" type="email" />
+      ><input required="true" v-model="e_mail" name="email" type="email" />
     </div>
     <div>
       <label for="password">enter your password</label
       ><input
         required="true"
-        :v-model="password"
+        v-model="pass_word"
         name="paasword"
         type="password"
       />
