@@ -3,5 +3,9 @@ import AuthForm from "@/components/authForm.vue";
 </script>
 
 <template>
-  <AuthForm title="signup" btn-text="Signup"></AuthForm>
+  <AuthForm
+    title="signup"
+    btn-text="Signup"
+    path="http://localhost:3000/signup"
+  ></AuthForm>
 </template>

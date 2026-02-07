@@ -3,7 +3,7 @@
     <ul>
       <li>
         <RouterLink to="/" class="contrast"
-          ><strong>E-commerce</strong></RouterLink
+          ><strong>bookmark manager</strong></RouterLink
         >
       </li>
     </ul>

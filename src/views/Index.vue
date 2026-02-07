@@ -5,6 +5,6 @@ import Navbar from "@/components/navbar.vue";
 <template>
   <Navbar></Navbar>
   <main class="container">
-    <h1>Products</h1>
+    <h1>bookmarks</h1>
   </main>
 </template>
