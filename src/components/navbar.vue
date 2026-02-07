@@ -1,21 +1,22 @@
 <template>
   <nav class="container">
     <ul>
-      <li><strong>E-commerce</strong></li>
+      <li>
+        <RouterLink to="/" class="contrast"
+          ><strong>E-commerce</strong></RouterLink
+        >
+      </li>
     </ul>
-    <ul>
-      <li><RouterLink class="contrast" to="/">Home</RouterLink></li>
-      <li><RouterLink class="contrast" to="/about">About</RouterLink></li>
-    </ul>
+
     <ul>
       <li>
         <button class="secondary">
-          <RouterLink class="contrast" to="/">Login</RouterLink>
+          <RouterLink class="contrast" to="/login">Login</RouterLink>
         </button>
       </li>
       <li>
         <button class="secondary">
-          <RouterLink class="contrast" to="/about">Signup</RouterLink>
+          <RouterLink class="contrast" to="/signup">Signup</RouterLink>
         </button>
       </li>
     </ul>
