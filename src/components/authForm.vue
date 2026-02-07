@@ -1,3 +1,5 @@
+<!-- TODO: fix the issue of the form sending undefined tovthe server -->
+
 <script setup lang="ts">
 import { ref } from "vue";
 import Navbar from "./navbar.vue";
