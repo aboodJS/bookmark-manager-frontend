@@ -4,5 +4,7 @@ import Navbar from "@/components/navbar.vue";
 
 <template>
   <Navbar></Navbar>
-  <h1>Hello world</h1>
+  <main class="container">
+    <h1>Products</h1>
+  </main>
 </template>
