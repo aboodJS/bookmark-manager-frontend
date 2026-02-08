@@ -1,9 +1,7 @@
-<!-- TODO: fix the issue of the form sending undefined tovthe server -->
-
 <script setup lang="ts">
 import { ref } from "vue";
 import Navbar from "./navbar.vue";
-
+import axios from "axios";
 const props = defineProps(["title", "path", "btnText"]);
 
 const chosen_name = ref("");
@@ -12,22 +10,14 @@ const user_password = ref("");
 const err = ref();
 
 async function sendForm() {
-  try {
-    const res = await fetch(props.path, {
-      method: "POST",
-      body: JSON.stringify({
-        username: chosen_name.value,
-        email: user_mail.value,
-        password: user_password.value,
-      }),
-    });
-
-    if (!res.ok) {
-      err.value = res.status;
-    }
-  } catch (error) {
-    err.value = error;
-    console.log(err.value);
+  const response = await axios.post(props.path, {
+    username: chosen_name.value,
+    email: user_mail.value,
+    password: user_password.value,
+  });
+  console.log(response.data);
+  if (response.status !== 200) {
+    err.value = true;
   }
 }
 </script>
