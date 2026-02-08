@@ -3,33 +3,31 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Navbar from "./navbar.vue";
+
 const props = defineProps(["title", "path", "btnText"]);
 
-const user_name = ref("");
-const e_mail = ref("");
-const pass_word = ref("");
+const chosen_name = ref("");
+const user_mail = ref("");
+const user_password = ref("");
+const err = ref();
 
 async function sendForm() {
-  console.log(user_name.value);
-  console.log(pass_word.value);
-  console.log(e_mail.value);
   try {
     const res = await fetch(props.path, {
       method: "POST",
       body: JSON.stringify({
-        username: user_name,
-        email: e_mail,
-        password: pass_word,
+        username: chosen_name.value,
+        email: user_mail.value,
+        password: user_password.value,
       }),
     });
 
-    if (res.ok) {
-      console.log(res.ok);
-    } else {
-      console.log("error");
+    if (!res.ok) {
+      err.value = res.status;
     }
   } catch (error) {
-    console.log(error);
+    err.value = error;
+    console.log(err.value);
   }
 }
 </script>
@@ -38,23 +36,39 @@ async function sendForm() {
   <Navbar></Navbar>
   <main class="container">
     <h2>{{ title }}</h2>
+    <article class="pico-background-red-500" v-if="err">
+      sorry, we encountered an error
+    </article>
     <div>
       <label for="username">enter your username</label
-      ><input required="true" v-model="user_name" name="username" type="text" />
+      ><input
+        required="true"
+        v-model="chosen_name"
+        name="username"
+        type="text"
+      />
     </div>
     <div>
       <label for="email">enter your email</label
-      ><input required="true" v-model="e_mail" name="email" type="email" />
+      ><input required="true" v-model="user_mail" name="email" type="email" />
     </div>
     <div>
       <label for="password">enter your password</label
       ><input
         required="true"
-        v-model="pass_word"
-        name="paasword"
+        v-model="user_password"
+        name="password"
         type="password"
       />
     </div>
     <button @click="sendForm">{{ btnText }}</button>
   </main>
 </template>
+
+<style>
+article {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+</style>
