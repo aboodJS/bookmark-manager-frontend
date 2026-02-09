@@ -18,6 +18,8 @@ async function sendForm() {
   console.log(response.data);
   if (response.status !== 200) {
     err.value = true;
+  } else {
+    err.value = false;
   }
 }
 </script>
@@ -29,6 +31,7 @@ async function sendForm() {
     <article class="pico-background-red-500" v-if="err">
       sorry, we encountered an error
     </article>
+    <article v-else-if="err === false">{{ title }} complete</article>
     <div>
       <label for="username">enter your username</label
       ><input
