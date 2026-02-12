@@ -16,7 +16,7 @@ async function sendForm() {
     password: user_password.value,
   });
   console.log(response.data);
-  if (response.status !== 200) {
+  if (response.data.error) {
     err.value = true;
   } else {
     err.value = false;
