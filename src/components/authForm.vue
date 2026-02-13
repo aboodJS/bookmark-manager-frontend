@@ -32,19 +32,31 @@ async function sendForm() {
       sorry, we encountered an error
     </article>
     <article v-else-if="err === false">{{ title }} complete</article>
-    <div>
-      <label for="username">enter your username</label
+    <div v-if="props.title === 'login'">
+      <label for="username_or_pass">enter your username or email</label
       ><input
         required="true"
         v-model="chosen_name"
-        name="username"
+        name="username_or_pass"
         type="text"
       />
     </div>
-    <div>
-      <label for="email">enter your email</label
-      ><input required="true" v-model="user_mail" name="email" type="email" />
+    <div v-else>
+      <div>
+        <label for="username">enter your username</label
+        ><input
+          required="true"
+          v-model="chosen_name"
+          name="username"
+          type="text"
+        />
+      </div>
+      <div>
+        <label for="email">enter your email</label
+        ><input required="true" v-model="user_mail" name="email" type="email" />
+      </div>
     </div>
+
     <div>
       <label for="password">enter your password</label
       ><input
