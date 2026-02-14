@@ -8,21 +8,20 @@ const chosen_name = ref("");
 const user_mail = ref("");
 const user_password = ref("");
 const err = ref();
+const errMsg = ref();
 
 async function sendForm() {
-  const response = await axios.post(props.path, {
-    username: chosen_name.value,
-    email: user_mail.value,
-    password: user_password.value,
-  });
-  console.log(response.data);
-  if (response.data.error) {
-    err.value = true;
-  } else {
+  try {
+    const response = await axios.post(props.path, {
+      username: chosen_name.value,
+      email: user_mail.value,
+      password: user_password.value,
+    });
+    console.log(response.data);
     err.value = false;
-    if (props.title === "login") {
-      localStorage.setItem("token", response.data.jwt_token);
-    }
+  } catch (error) {
+    err.value = true;
+    errMsg.value = error;
   }
 }
 </script>
@@ -32,7 +31,7 @@ async function sendForm() {
   <main class="container">
     <h2>{{ title }}</h2>
     <article class="pico-background-red-500" v-if="err">
-      sorry, we encountered an error
+      {{ errMsg }}
     </article>
     <article v-else-if="err === false">{{ title }} complete</article>
     <div v-if="props.title === 'login'">
