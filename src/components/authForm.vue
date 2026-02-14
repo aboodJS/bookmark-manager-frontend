@@ -20,6 +20,7 @@ async function sendForm() {
     err.value = true;
   } else {
     err.value = false;
+    localStorage.setItem("token", response.data.jwt_token);
   }
 }
 </script>
