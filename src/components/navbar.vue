@@ -1,9 +1,33 @@
 <script setup lang="ts">
-import { useTemplateRef } from "vue";
+import { ref, useTemplateRef } from "vue";
 import { Icon } from "@iconify/vue";
+import axios from "axios";
+
+const title = ref("");
+const url = ref("");
+const description = ref("");
 
 const jwt = localStorage.getItem("jwt_token");
 const bookmark_modal = useTemplateRef("bookmark_modal");
+async function sendBookmark() {
+  const payload: Object = {
+    title: title.value,
+    url: url.value,
+    description: description.value,
+  };
+
+  const headers = {
+    Authentication: `Bearer ${jwt}`,
+  };
+
+  const response = await axios.post(
+    "http://localhost:3000/bookmarks/add",
+    payload,
+    { headers: headers },
+  );
+
+  console.log(response.data);
+}
 </script>
 
 <template>
@@ -48,14 +72,18 @@ const bookmark_modal = useTemplateRef("bookmark_modal");
       />
 
       <div>
-        <label for="title">title</label><input name="title" type="text" />
+        <label for="title">title</label
+        ><input v-model="title" name="title" type="text" />
       </div>
-      <div><label for="url">url</label><input name="url" type="text" /></div>
+      <div>
+        <label for="url">url</label
+        ><input v-model="url" name="url" type="text" />
+      </div>
       <div>
         <label for="desc">description</label>
-        <textarea name="desc" id=""></textarea>
+        <textarea v-model="description" name="desc" id=""></textarea>
       </div>
-      <button class="secondary">add</button>
+      <button class="secondary" @click="sendBookmark">add</button>
     </form>
   </dialog>
 </template>
