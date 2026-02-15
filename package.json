@@ -18,6 +18,8 @@
     "vue-router": "^5.0.1"
   },
   "devDependencies": {
+    "@iconify-json/material-symbols": "^1.2.55",
+    "@iconify/vue": "^5.0.0",
     "@tsconfig/node24": "^24.0.4",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^24.10.9",

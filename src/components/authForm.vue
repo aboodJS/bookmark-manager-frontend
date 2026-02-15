@@ -17,7 +17,7 @@ async function sendForm() {
       email: user_mail.value,
       password: user_password.value,
     });
-    console.log(response.data);
+    localStorage.setItem("jwt_token", response.data.jwt_token);
     err.value = false;
   } catch (error) {
     err.value = true;
