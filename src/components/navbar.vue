@@ -83,7 +83,7 @@ async function sendBookmark() {
         <label for="desc">description</label>
         <textarea v-model="description" name="desc" id=""></textarea>
       </div>
-      <button class="secondary" @click="sendBookmark">add</button>
+      <button class="secondary" @click.prevent="sendBookmark">add</button>
     </form>
   </dialog>
 </template>
