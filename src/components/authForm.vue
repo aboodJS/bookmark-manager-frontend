@@ -13,11 +13,11 @@ const errMsg = ref();
 async function sendForm() {
   try {
     const response = await axios.post(props.path, {
-      username: chosen_name.value,
-      email: user_mail.value,
+      username: chosen_name.value || "",
+      email: user_mail.value || "",
       password: user_password.value,
     });
-    localStorage.setItem("jwt_token", response.data.jwt_token);
+    localStorage.setItem("jwt_token", response.data.jwt);
     err.value = false;
   } catch (error) {
     err.value = true;
