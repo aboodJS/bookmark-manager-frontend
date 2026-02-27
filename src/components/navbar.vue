@@ -7,8 +7,8 @@ const title = ref("");
 const url = ref("");
 const description = ref("");
 
-const jwt = localStorage.getItem("jwt_token");
 const bookmark_modal = useTemplateRef("bookmark_modal");
+const jwt = sessionStorage.getItem("access_token");
 async function sendBookmark() {
   const payload: Object = {
     title: title.value,

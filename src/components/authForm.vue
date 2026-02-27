@@ -12,12 +12,19 @@ const errMsg = ref();
 
 async function sendForm() {
   try {
-    const response = await axios.post(props.path, {
-      username: chosen_name.value || "",
-      email: user_mail.value || "",
-      password: user_password.value,
-    });
-    localStorage.setItem("jwt_token", response.data.jwt);
+    const response = await axios.post(
+      props.path,
+      {
+        username: chosen_name.value || "",
+        email: user_mail.value || "",
+        password: user_password.value,
+      },
+      { withCredentials: true },
+    );
+    sessionStorage.setItem("access_token", response.data.jwt);
+
+    console.log(refreshResponse.data);
+
     err.value = false;
   } catch (error) {
     err.value = true;

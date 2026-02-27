@@ -1,3 +1,4 @@
+import Bookmark from "@/views/bookmark.vue";
 import Index from "@/views/Index.vue";
 import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
@@ -21,6 +22,11 @@ const router = createRouter({
       path: "/signup",
       name: "signup",
       component: Signup,
+    },
+    {
+      path: "/bookmarks/:id",
+      name: "bookmark",
+      component: Bookmark,
     },
   ],
 });
