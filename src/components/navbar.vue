@@ -7,8 +7,15 @@ const title = ref("");
 const url = ref("");
 const description = ref("");
 
+function logout(): void {
+  sessionStorage.removeItem("access_token");
+  cookieStore.delete("refreshToken");
+  location.reload();
+}
+
 const bookmark_modal = useTemplateRef("bookmark_modal");
 const jwt = sessionStorage.getItem("access_token");
+const isLoggedIn = sessionStorage.getItem("access_token");
 async function sendBookmark() {
   const payload: Object = {
     title: title.value,
@@ -54,10 +61,15 @@ async function sendBookmark() {
       <li>
         <button
           class="secondary"
-          v-if="jwt !== null"
+          v-if="isLoggedIn != null"
           @click="bookmark_modal?.showModal"
         >
           add bookmark +
+        </button>
+      </li>
+      <li>
+        <button class="secondary" v-if="isLoggedIn != null" @click="logout">
+          logout
         </button>
       </li>
     </ul>
