@@ -23,8 +23,6 @@ async function sendForm() {
     );
     sessionStorage.setItem("access_token", response.data.jwt);
 
-    console.log(refreshResponse.data);
-
     err.value = false;
   } catch (error) {
     err.value = true;
