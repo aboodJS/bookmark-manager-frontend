@@ -15,6 +15,7 @@ function logout(): void {
 
 const bookmark_modal = useTemplateRef("bookmark_modal");
 const jwt = sessionStorage.getItem("access_token");
+const userID = sessionStorage.getItem('user_id')
 const isLoggedIn = sessionStorage.getItem("access_token");
 async function sendBookmark() {
   const payload: Object = {
@@ -25,14 +26,15 @@ async function sendBookmark() {
 
   const headers = {
     Authentication: `Bearer ${jwt}`,
+    userid: userID
   };
 
   const response = await axios.post(
     "http://localhost:3000/bookmarks/add",
     payload,
-    { headers: headers },
+    { headers: headers, withCredentials: true },
   );
-
+  
   console.log(response.data);
 }
 </script>

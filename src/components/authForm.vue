@@ -22,6 +22,7 @@ async function sendForm() {
       { withCredentials: true },
     );
     sessionStorage.setItem("access_token", response.data.jwt);
+    sessionStorage.setItem("user_id", response.data.id);
 
     err.value = false;
   } catch (error) {
